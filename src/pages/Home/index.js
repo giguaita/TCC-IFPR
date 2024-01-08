@@ -45,7 +45,7 @@ export default function App() {
       <CarouselScreen />
     </View>
   );
-  //EXEMPLO
+ 
 }
 
 const styles = StyleSheet.create({
