@@ -34,10 +34,14 @@ export default function App() {
       <View style={styles.headerContainer}>
         <Text style={styles.title}>Seja Bem Vindo ao Alpha</Text>
         <Text style={styles.userName}>{userName}</Text>
+      </View>
+      <View style={styles.mensagem}>
         <Text style={styles.subTitle}>Esperamos que sua jornada seja ótima</Text>
       </View>
-      <Text style={styles.greeting}>{greeting}</Text>
-      <Text>Que maravilha você por aqui! O que acha de dar uma olhada nessas dicas fresquinhas?</Text>
+        <View  style={styles.cumprimentos}>
+          <Text style={styles.greeting}>{greeting}</Text>
+          <Text>Que maravilha você por aqui! O que acha de dar uma olhada nessas dicas fresquinhas?</Text>
+        </View>
       <CarouselScreen />
     </View>
   );
@@ -45,10 +49,19 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+
+  mensagem:{
+    marginTop: '30%',
+
+  },
+  cumprimentos: {
+    marginTop: '30%',
+  
+  },
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     padding: 20,
   },
   headerContainer: {
@@ -60,7 +73,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#E84803', // Cor para o título
-    marginBottom: 5,
+    marginBottom: 5
   },
   userName: {
     fontSize: 18,
