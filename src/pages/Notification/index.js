@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import CadastroCasa from '../Notification/CadastroCasa';
 
 export default function Notification({ navigation }) {
-  // Estado para armazenar o total de gastos
+  const [exibirCadastroCasa, setExibirCadastroCasa] = useState(false);
   const [totalGastos, setTotalGastos] = useState(0);
 
-  // Função para navegar para a tela de cadastro com base no tipo de gasto
   const navigateToCadastro = (screenName) => {
     navigation.navigate(screenName);
   };
@@ -21,11 +21,15 @@ export default function Notification({ navigation }) {
       {/* Botões para os tipos de gastos */}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigateToCadastro('Casa')}
+        onPress={() => setExibirCadastroCasa(!exibirCadastroCasa)}
       >
         <Text style={styles.buttonText}>Casa</Text>
       </TouchableOpacity>
 
+      {/* Exibe o componente de cadastro de Casa condicionalmente */}
+      {exibirCadastroCasa && <CadastroCasa />}
+
+      {/* Botões para os outros tipos de gastos */}
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigateToCadastro('Alimentacao')}
@@ -67,7 +71,6 @@ export default function Notification({ navigation }) {
   );
 }
 
-// Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -76,30 +79,30 @@ const styles = StyleSheet.create({
   },
   moneySymbol: {
     fontSize: 30,
-    marginBottom: 5, // Espaço abaixo do símbolo de dinheiro
+    marginBottom: 5,
   },
   text: {
     fontSize: 30,
     fontWeight: 'bold',
-    marginBottom: 100, // Espaço abaixo do título
+    marginBottom: 100,
   },
   button: {
-    backgroundColor: '#03BB85', // Cor de fundo do botão
-    padding: 10, // Preenchimento interno do botão
-    marginVertical: 10, // Margem vertical do botão
-    borderRadius: 5, // Borda arredondada do botão
-    width: 200, // Largura fixa para todos os botões
-    alignItems: 'center', // Alinhamento do conteúdo ao centro do botão
-    marginBottom: 10, // Espaço abaixo de cada botão
+    backgroundColor: '#03BB85',
+    padding: 10,
+    marginVertical: 10,
+    borderRadius: 5,
+    width: 200,
+    alignItems: 'center',
+    marginBottom: 10,
   },
   buttonText: {
-    color: 'white', // Cor do texto do botão
-    fontSize: 18, // Tamanho da fonte do texto do botão
-    fontWeight: 'bold', // Peso da fonte do texto do botão
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   contador: {
-    fontSize: 20, // Tamanho da fonte do contador
-    fontWeight: 'bold', // Peso da fonte do contador
-    marginTop: 20, // Espaço acima do contador
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 20,
   },
 });
