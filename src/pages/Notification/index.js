@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function Notification({ navigation }) {
+  // Estado para armazenar o total de gastos
+  const [totalGastos, setTotalGastos] = useState(0);
+
+  // Função para navegar para a tela de cadastro com base no tipo de gasto
   const navigateToCadastro = (screenName) => {
     navigation.navigate(screenName);
   };
 
   return (
     <View style={styles.container}>
+      {/* Símbolo de dinheiro */}
       <Text style={styles.moneySymbol}>$</Text>
+
+      {/* Título "Controle de Gastos" */}
       <Text style={styles.text}>Controle de Gastos</Text>
 
+      {/* Botões para os tipos de gastos */}
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigateToCadastro('Casa')}
@@ -30,8 +38,8 @@ export default function Notification({ navigation }) {
         onPress={() => navigateToCadastro('Transporte')}
       >
         <Text style={styles.buttonText}>Transporte</Text>
-      </TouchableOpacity> 
-     
+      </TouchableOpacity>
+
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigateToCadastro('SaudeBeleza')}
@@ -52,46 +60,46 @@ export default function Notification({ navigation }) {
       >
         <Text style={styles.buttonText}>Lazer & Extras</Text>
       </TouchableOpacity>
+
+      {/* Exibe o total de gastos na interface */}
+      <Text style={styles.contador}>Total de Gastos: R$ {totalGastos.toFixed(2)}</Text>
     </View>
   );
 }
 
+// Estilos
 const styles = StyleSheet.create({
-    // Estilo para o container principal
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    
-    // Estilo para o símbolo de dinheiro
-    moneySymbol: {
-      fontSize: 30,
-      marginBottom: 5, // Margem inferior de 5 unidades
-    },
-    
-    // Estilo para o texto "Controle de Gastos"
-    text: {
-      fontSize: 25,
-      fontWeight: 'bold',
-      marginBottom: 20, // Margem inferior de 20 unidades
-    },
-    
-    // Estilo para os botões
-    button: {
-      backgroundColor: '#03BB85', // Cor de fundo
-      padding: 10, // Preenchimento interno de 10 unidades
-      marginVertical: 10, // Margem vertical de 10 unidades
-      borderRadius: 5, // Borda arredondada com raio de 5 unidades
-      width: 200, // Largura fixa para todos os botões
-      alignItems: 'center', // Alinhamento do conteúdo ao centro
-    },
-    
-    // Estilo para o texto dos botões
-    buttonText: {
-      color: 'white', // Cor do texto
-      fontSize: 18, // Tamanho da fonte
-      fontWeight: 'bold', // Negrito
-    },
-  });
-  
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  moneySymbol: {
+    fontSize: 30,
+    marginBottom: 5, // Espaço abaixo do símbolo de dinheiro
+  },
+  text: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginBottom: 100, // Espaço abaixo do título
+  },
+  button: {
+    backgroundColor: '#03BB85', // Cor de fundo do botão
+    padding: 10, // Preenchimento interno do botão
+    marginVertical: 10, // Margem vertical do botão
+    borderRadius: 5, // Borda arredondada do botão
+    width: 200, // Largura fixa para todos os botões
+    alignItems: 'center', // Alinhamento do conteúdo ao centro do botão
+    marginBottom: 10, // Espaço abaixo de cada botão
+  },
+  buttonText: {
+    color: 'white', // Cor do texto do botão
+    fontSize: 18, // Tamanho da fonte do texto do botão
+    fontWeight: 'bold', // Peso da fonte do texto do botão
+  },
+  contador: {
+    fontSize: 20, // Tamanho da fonte do contador
+    fontWeight: 'bold', // Peso da fonte do contador
+    marginTop: 20, // Espaço acima do contador
+  },
+});
