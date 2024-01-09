@@ -8,6 +8,7 @@ export default function Notification({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.moneySymbol}>$</Text>
       <Text style={styles.text}>Controle de Gastos</Text>
 
       <TouchableOpacity
@@ -56,25 +57,41 @@ export default function Notification({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  button: {
-    backgroundColor: '#3498db',
-    padding: 10,
-    marginVertical: 10,
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
+    // Estilo para o container principal
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    
+    // Estilo para o símbolo de dinheiro
+    moneySymbol: {
+      fontSize: 30,
+      marginBottom: 5, // Margem inferior de 5 unidades
+    },
+    
+    // Estilo para o texto "Controle de Gastos"
+    text: {
+      fontSize: 25,
+      fontWeight: 'bold',
+      marginBottom: 20, // Margem inferior de 20 unidades
+    },
+    
+    // Estilo para os botões
+    button: {
+      backgroundColor: '#03BB85', // Cor de fundo
+      padding: 10, // Preenchimento interno de 10 unidades
+      marginVertical: 10, // Margem vertical de 10 unidades
+      borderRadius: 5, // Borda arredondada com raio de 5 unidades
+      width: 200, // Largura fixa para todos os botões
+      alignItems: 'center', // Alinhamento do conteúdo ao centro
+    },
+    
+    // Estilo para o texto dos botões
+    buttonText: {
+      color: 'white', // Cor do texto
+      fontSize: 18, // Tamanho da fonte
+      fontWeight: 'bold', // Negrito
+    },
+  });
+  
