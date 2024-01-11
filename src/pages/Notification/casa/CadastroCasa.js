@@ -1,6 +1,7 @@
 // CadastroCasa.js
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import {useNavigation} from '@react-navigation/native'; 
 
 export default function CadastroCasa() {
   const [aluguel, setAluguel] = useState('');
@@ -12,6 +13,8 @@ export default function CadastroCasa() {
   const [gas, setGas] = useState('');
   const [manutencoes, setManutencoes] = useState('');
   const [iptu, setIptu] = useState('');
+  
+  const navigation = useNavigation();
 
   const calcularTotal = () => {
     const valores = [aluguel, agua, luz, internet, emprestimo, condominio, gas, manutencoes, iptu];
@@ -95,6 +98,14 @@ export default function CadastroCasa() {
       <TouchableOpacity style={styles.botaoSalvar}>
         <Text style={styles.textoBotao}>Salvar</Text>
       </TouchableOpacity>
+
+      {/* Botão para voltar */}
+      <TouchableOpacity
+        style={styles.botaoVoltar}
+        onPress={() => navigation.goBack()} // Usar navigation.goBack() para voltar
+      >
+        <Text style={styles.textoBotao}>Voltar</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -129,6 +140,12 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     marginTop: 20,
+  },
+  botaoVoltar: {
+    backgroundColor: '#4285F4', // Cor de fundo do botão de voltar
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
   },
   textoBotao: {
     color: 'white',

@@ -1,13 +1,25 @@
+// Importações necessárias
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import CadastroCasa from '../Notification/CadastroCasa';
+import CadastroCasa from '../Notification/casa/index';  // Certifique-se de que o caminho está correto
+import { useNavigation } from '@react-navigation/native';  // Importando o hook de navegação
 
-export default function Notification({ navigation }) {
+
+// Componente principal
+export default function Notification() {
   const [exibirCadastroCasa, setExibirCadastroCasa] = useState(false);
   const [totalGastos, setTotalGastos] = useState(0);
+  const navigation = useNavigation();  // Obtendo a instância de navegação
+  
 
+  
   const navigateToCadastro = (screenName) => {
     navigation.navigate(screenName);
+  };
+
+  const abrirCadastroCasa = () => {
+    console.log('Lógica específica para o botão Casa');
+    navigation.navigate('CadastroCasa');
   };
 
   return (
@@ -19,15 +31,9 @@ export default function Notification({ navigation }) {
       <Text style={styles.text}>Controle de Gastos</Text>
 
       {/* Botões para os tipos de gastos */}
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => setExibirCadastroCasa(!exibirCadastroCasa)}
-      >
+      <TouchableOpacity style={styles.button} onPress={() => abrirCadastroCasa()}>
         <Text style={styles.buttonText}>Casa</Text>
       </TouchableOpacity>
-
-      {/* Exibe o componente de cadastro de Casa condicionalmente */}
-      {exibirCadastroCasa && <CadastroCasa />}
 
       {/* Botões para os outros tipos de gastos */}
       <TouchableOpacity

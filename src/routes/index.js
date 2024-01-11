@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Entypo, Feather} from '@expo/vector-icons';
 
+
 import Welcome from '../pages/Welcome';
 import Signin from '../pages/Signin';
 import Cadastro from '../pages/Cadastro';
@@ -14,6 +15,7 @@ import Notification from '../pages/Notification';
 import Profile from '../pages/Profile';
 import Search from '../pages/Search';
 import ButtonNew from '../pages/components/ButtonNew';
+import CadastroCasa from '../pages/Notification/casa/index';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -29,6 +31,8 @@ function MainStack() {
       <Stack.Screen name="Signin" component={Signin} options={{ headerShown: false }} />
 
       <Stack.Screen name="Cadastro" component={Cadastro} options={{ headerShown: false }} />
+    
+      <Stack.Screen name="CadastroCasa" component={CadastroCasa} options={{ headerShown: false }} />
 
     </Stack.Navigator>
   );
