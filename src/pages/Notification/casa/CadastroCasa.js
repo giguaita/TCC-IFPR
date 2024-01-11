@@ -3,6 +3,14 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import {useNavigation} from '@react-navigation/native'; 
 
+import {
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Button,
+  Keyboard,
+} from 'react-native';
+
 export default function CadastroCasa() {
   const [aluguel, setAluguel] = useState('');
   const [agua, setAgua] = useState('');
@@ -22,7 +30,25 @@ export default function CadastroCasa() {
     return total.toFixed(2);
   };
 
+  const KeyboardAvoidingComponent = () => {
+    return (
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.inner}>
+            <Text style={styles.header}>Header</Text>
+            <TextInput placeholder="Username" style={styles.textInput} />
+            <View style={styles.btnContainer}>
+              <Button title="Submit" onPress={() => null} />
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    );
+  }; 
   return (
+
     <View style={styles.container}>
       <Text style={styles.titulo}>Cadastro de Gastos - Casa</Text>
 
@@ -110,6 +136,7 @@ export default function CadastroCasa() {
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -151,4 +178,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
+  
 });
+
+
