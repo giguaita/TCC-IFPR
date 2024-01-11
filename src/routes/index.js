@@ -16,6 +16,9 @@ import Profile from '../pages/Profile';
 import Search from '../pages/Search';
 import ButtonNew from '../pages/components/ButtonNew';
 import CadastroCasa from '../pages/Notification/casa/index';
+import CadastroAlimentacao from '../pages/Notification/alimentacao/index';
+import CadastroTransporte from '../pages/Notification/transporte/index';
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -33,6 +36,10 @@ function MainStack() {
       <Stack.Screen name="Cadastro" component={Cadastro} options={{ headerShown: false }} />
     
       <Stack.Screen name="CadastroCasa" component={CadastroCasa} options={{ headerShown: false }} />
+
+      <Stack.Screen name="CadastroAlimentacao" component={CadastroAlimentacao} options={{ headerShown: false }} />
+
+      <Stack.Screen name="CadastroTransporte" component={CadastroTransporte} options={{ headerShown: false }} />
 
     </Stack.Navigator>
   );

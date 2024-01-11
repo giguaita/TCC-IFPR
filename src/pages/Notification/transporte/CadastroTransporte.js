@@ -1,24 +1,22 @@
-// CadastroCasa.js
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import {useNavigation} from '@react-navigation/native'; 
-//import KeyboardAvoidingComponent from '../../components/keyboard';
 
-export default function CadastroCasa() {
-  const [aluguel, setAluguel] = useState('');
-  const [agua, setAgua] = useState('');
-  const [luz, setLuz] = useState('');
-  const [internet, setInternet] = useState('');
-  const [emprestimo, setEmprestimo] = useState('');
-  const [condominio, setCondominio] = useState('');
-  const [gas, setGas] = useState('');
-  const [manutencoes, setManutencoes] = useState('');
-  const [iptu, setIptu] = useState('');
+
+export default function CadastroTransporte() {
+  const [tranporteP, setTransporteP] = useState('');
+  const [combustivel, setCombustivel] = useState('');
+  const [estacionamento, setEstacionamento] = useState('');
+  const [manutencao, setManutencao] = useState('');
+  const [seguro, setSeguro] = useState('');
+  const [IPVA, setIPVA] = useState('');
+  const [uber, setUber] = useState('');
+  const [outros, setOutros] = useState('');
   
   const navigation = useNavigation();
 
   const calcularTotal = () => {
-    const valores = [aluguel, agua, luz, internet, emprestimo, condominio, gas, manutencoes, iptu];
+    const valores = [tranporteP, combustivel, estacionamento, manutencao, seguro, IPVA, uber,outros];
     const total = valores.reduce((acc, valor) => acc + parseFloat(valor || 0), 0);
     return total.toFixed(2);
   };
@@ -27,70 +25,63 @@ export default function CadastroCasa() {
    
     <View style={styles.container}>
       
-      <Text style={styles.titulo}>Cadastro de Gastos - Casa</Text>
+      <Text style={styles.titulo}>Cadastro de Gastos - Transporte</Text>
 
       {/* Campos de entrada para os gastos */}
       <TextInput
         style={styles.input}
-        placeholder="Aluguel"
-        value={aluguel}
-        onChangeText={(text) => setAluguel(text)}
+        placeholder="Transporte Público"
+        value={tranporteP}
+        onChangeText={(text) => setTransporteP(text)}
         keyboardType="numeric"
       />
       <TextInput
         style={styles.input}
-        placeholder="Água"
-        value={agua}
-        onChangeText={(text) => setAgua(text)}
+        placeholder="Combustível"
+        value={combustivel}
+        onChangeText={(text) => setCombustivel(text)}
         keyboardType="numeric"
       />
       <TextInput
         style={styles.input}
-        placeholder="Luz"
-        value={luz}
-        onChangeText={(text) => setLuz(text)}
+        placeholder="Estacionamento"
+        value={estacionamento}
+        onChangeText={(text) => setEstacionamento(text)}
         keyboardType="numeric"
       />
       <TextInput
         style={styles.input}
-        placeholder="Internet"
-        value={internet}
-        onChangeText={(text) => setInternet(text)}
+        placeholder="Manutenções do Automovél"
+        value={manutencao}
+        onChangeText={(text) => setManutencao(text)}
         keyboardType="numeric"
       />
       <TextInput
         style={styles.input}
-        placeholder="Empréstimo ou Financiamento"
-        value={emprestimo}
-        onChangeText={(text) => setEmprestimo(text)}
+        placeholder="Seguro"
+        value={seguro}
+        onChangeText={(text) => setSeguro(text)}
         keyboardType="numeric"
       />
       <TextInput
         style={styles.input}
-        placeholder="Valor do Condomínio"
-        value={condominio}
-        onChangeText={(text) => setCondominio(text)}
+        placeholder="IPVA"
+        value={IPVA}
+        onChangeText={(text) => setIPVA(text)}
         keyboardType="numeric"
       />
       <TextInput
         style={styles.input}
-        placeholder="Gás"
-        value={gas}
-        onChangeText={(text) => setGas(text)}
+        placeholder="Uber/ APP de transporte"
+        value={uber}
+        onChangeText={(text) => setUber(text)}
         keyboardType="numeric"
       />
       <TextInput
         style={styles.input}
-        placeholder="Manutenções"
-        value={manutencoes}
-        onChangeText={(text) => setManutencoes(text)}
-        keyboardType="numeric"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="IPTU"
-        value={iptu}
-        onChangeText={(text) => setIptu(text)}
+        placeholder="Outros"
+        value={outros}
+        onChangeText={(text) => setOutros(text)}
         keyboardType="numeric"
       />
 

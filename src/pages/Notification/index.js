@@ -7,7 +7,8 @@ import { useNavigation } from '@react-navigation/native';  // Importando o hook 
 
 // Componente principal
 export default function Notification() {
-  const [exibirCadastroCasa, setExibirCadastroCasa] = useState(false);
+  //const [exibirCadastroCasa, setExibirCadastroCasa] = useState(false);
+  //const [exibirCadastroAlimentacao, setExibirCadastroAlimentacao] = useState(false);
   const [totalGastos, setTotalGastos] = useState(0);
   const navigation = useNavigation();  // Obtendo a instância de navegação
   
@@ -20,6 +21,16 @@ export default function Notification() {
   const abrirCadastroCasa = () => {
     console.log('Lógica específica para o botão Casa');
     navigation.navigate('CadastroCasa');
+  };
+
+  const abrirCadastroAlimentacao = () => {
+    console.log('Lógica específica para o botão Alimentação');
+    navigation.navigate('CadastroAlimentacao');
+  };
+
+  const abrirCadastroTransporte = () => {
+    console.log('Lógica específica para o botão Transporte');
+    navigation.navigate('CadastroTransporte');
   };
 
   return (
@@ -36,17 +47,11 @@ export default function Notification() {
       </TouchableOpacity>
 
       {/* Botões para os outros tipos de gastos */}
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigateToCadastro('Alimentacao')}
-      >
+      <TouchableOpacity style={styles.button} onPress={() => abrirCadastroAlimentacao ()}>
         <Text style={styles.buttonText}>Alimentação</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigateToCadastro('Transporte')}
-      >
+      <TouchableOpacity style={styles.button} onPress={() => abrirCadastroTransporte()}>
         <Text style={styles.buttonText}>Transporte</Text>
       </TouchableOpacity>
 
