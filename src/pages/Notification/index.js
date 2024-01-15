@@ -5,13 +5,13 @@ import { useNavigation } from '@react-navigation/native';
 export default function Notification() {
   // Estado para armazenar o total de gastos
   const [totalGastos, setTotalGastos] = useState(0);
-
-  // Hook de navegação do React Navigation
+  const [showInfo, setShowInfo] = useState(false);
   const navigation = useNavigation();
 
   // Função chamada quando o ícone de interrogação é clicado
   const handleInfoClick = () => {
     console.log('Ícone de interrogação clicado!');
+    setShowInfo(!showInfo); // Alterna o estado de exibição do texto de informação
   };
 
   // Funções para lidar com o clique em diferentes botões
@@ -49,8 +49,17 @@ export default function Notification() {
     <View style={styles.container}>
       {/* Ícone de interrogação no canto superior esquerdo */}
       <TouchableOpacity style={styles.infoButton} onPress={handleInfoClick}>
-        <Text style={styles.infoButtonText}>?</Text>
+         <Text style={styles.infoButtonText}>?</Text>
       </TouchableOpacity>
+
+       {/* Exibe o texto de informação quando showInfo for verdadeiro */}
+       {showInfo && (
+        <View style={styles.infoTextContainer}>
+          <Text style={styles.infoText}>
+            Adcicione abaixo seus gastos mensais, lembrando que caso algo não faça parte de seus gastos apenas deixe R$0,00.
+          </Text>
+        </View>
+      )}
 
       {/* Símbolo de dinheiro */}
       <Text style={styles.moneySymbol}>$</Text>
@@ -128,12 +137,13 @@ const styles = StyleSheet.create({
   infoButton: {
     position: 'absolute',
     top: 10,
-    left: 10,
+    right: 10,
     backgroundColor: 'transparent',
     zIndex: 1,
+    padding: 15, // Ajuste o tamanho conforme necessário
   },
   infoButtonText: {
     color: 'black',
-    fontSize: 20,
+    fontSize: 24, // Ajuste o tamanho conforme necessário
   },
 });
