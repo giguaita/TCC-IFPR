@@ -1,14 +1,12 @@
 // Importações necessárias
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import CadastroCasa from '../Notification/casa/index';  // Certifique-se de que o caminho está correto
+//import CadastroCasa from '../Notification/casa/index';  // Certifique-se de que o caminho está correto
 import { useNavigation } from '@react-navigation/native';  // Importando o hook de navegação
 
 
 // Componente principal
 export default function Notification() {
-  //const [exibirCadastroCasa, setExibirCadastroCasa] = useState(false);
-  //const [exibirCadastroAlimentacao, setExibirCadastroAlimentacao] = useState(false);
   const [totalGastos, setTotalGastos] = useState(0);
   const navigation = useNavigation();  // Obtendo a instância de navegação
   
@@ -33,6 +31,21 @@ export default function Notification() {
     navigation.navigate('CadastroTransporte');
   };
 
+  const abrirCadastrosaudeBeleza = () => {
+    console.log('Lógica específica para o botão SaudeBeleza');
+    navigation.navigate('CadastrosaudeBeleza');
+  };
+
+  const abrirCadastroEducacao = () => {
+    console.log('Lógica específica para o botão Educação');
+    navigation.navigate('CadastroEducacao');
+  };
+
+  const abrirCadastroLazer = () => {
+    console.log('Lógica específica para o botão Lazer');
+    navigation.navigate('CadastroLazer');
+  };
+
   return (
     <View style={styles.container}>
       {/* Símbolo de dinheiro */}
@@ -55,24 +68,15 @@ export default function Notification() {
         <Text style={styles.buttonText}>Transporte</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigateToCadastro('SaudeBeleza')}
-      >
+      <TouchableOpacity style={styles.button} onPress={() => abrirCadastrosaudeBeleza()}>
         <Text style={styles.buttonText}>Saúde & Beleza</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigateToCadastro('Educacao')}
-      >
+      <TouchableOpacity style={styles.button} onPress={() => abrirCadastroEducacao()}>
         <Text style={styles.buttonText}>Educação</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigateToCadastro('Lazer')}
-      >
+      <TouchableOpacity style={styles.button} onPress={() => abrirCadastroLazer()}>
         <Text style={styles.buttonText}>Lazer & Extras</Text>
       </TouchableOpacity>
 

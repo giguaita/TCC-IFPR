@@ -18,6 +18,10 @@ import ButtonNew from '../pages/components/ButtonNew';
 import CadastroCasa from '../pages/Notification/casa/index';
 import CadastroAlimentacao from '../pages/Notification/alimentacao/index';
 import CadastroTransporte from '../pages/Notification/transporte/index';
+import CadastrosaudeBeleza from '../pages/Notification/saudeBeleza/index';
+import CadastroEducacao from '../pages/Notification/educacao/index';
+import CadastroLazer from '../pages/Notification/lazer/index';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -40,6 +44,14 @@ function MainStack() {
       <Stack.Screen name="CadastroAlimentacao" component={CadastroAlimentacao} options={{ headerShown: false }} />
 
       <Stack.Screen name="CadastroTransporte" component={CadastroTransporte} options={{ headerShown: false }} />
+
+      <Stack.Screen name="CadastrosaudeBeleza" component={CadastrosaudeBeleza} options={{ headerShown: false }} />
+
+      <Stack.Screen name="CadastroEducacao" component={CadastroEducacao} options={{ headerShown: false }} />
+
+      <Stack.Screen name="CadastroLazer" component={CadastroLazer} options={{ headerShown: false }} />
+
+      
 
     </Stack.Navigator>
   );
