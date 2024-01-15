@@ -1,21 +1,20 @@
-// Importações necessárias
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-//import CadastroCasa from '../Notification/casa/index';  // Certifique-se de que o caminho está correto
-import { useNavigation } from '@react-navigation/native';  // Importando o hook de navegação
+import { useNavigation } from '@react-navigation/native';
 
-
-// Componente principal
 export default function Notification() {
+  // Estado para armazenar o total de gastos
   const [totalGastos, setTotalGastos] = useState(0);
-  const navigation = useNavigation();  // Obtendo a instância de navegação
-  
 
-  
-  const navigateToCadastro = (screenName) => {
-    navigation.navigate(screenName);
+  // Hook de navegação do React Navigation
+  const navigation = useNavigation();
+
+  // Função chamada quando o ícone de interrogação é clicado
+  const handleInfoClick = () => {
+    console.log('Ícone de interrogação clicado!');
   };
 
+  // Funções para lidar com o clique em diferentes botões
   const abrirCadastroCasa = () => {
     console.log('Lógica específica para o botão Casa');
     navigation.navigate('CadastroCasa');
@@ -48,6 +47,11 @@ export default function Notification() {
 
   return (
     <View style={styles.container}>
+      {/* Ícone de interrogação no canto superior esquerdo */}
+      <TouchableOpacity style={styles.infoButton} onPress={handleInfoClick}>
+        <Text style={styles.infoButtonText}>?</Text>
+      </TouchableOpacity>
+
       {/* Símbolo de dinheiro */}
       <Text style={styles.moneySymbol}>$</Text>
 
@@ -60,7 +64,7 @@ export default function Notification() {
       </TouchableOpacity>
 
       {/* Botões para os outros tipos de gastos */}
-      <TouchableOpacity style={styles.button} onPress={() => abrirCadastroAlimentacao ()}>
+      <TouchableOpacity style={styles.button} onPress={() => abrirCadastroAlimentacao()}>
         <Text style={styles.buttonText}>Alimentação</Text>
       </TouchableOpacity>
 
@@ -86,6 +90,7 @@ export default function Notification() {
   );
 }
 
+// Estilos CSS
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -119,5 +124,16 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginTop: 20,
+  },
+  infoButton: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    backgroundColor: 'transparent',
+    zIndex: 1,
+  },
+  infoButtonText: {
+    color: 'black',
+    fontSize: 20,
   },
 });
