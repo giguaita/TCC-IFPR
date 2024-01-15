@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   botaoVoltar: {
-    backgroundColor: '#4285F4', // Cor de fundo do botão de voltar
+    backgroundColor: '#E84803', // Cor de fundo do botão de voltar
     padding: 10,
     borderRadius: 5,
     marginTop: 10,
