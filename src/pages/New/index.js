@@ -1,26 +1,23 @@
+// New.js
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-export default function New({ navigation }) {
-  // Função para lidar com o clique nos botões
-  const handleInvestmentClick = (tipoInvestimento) => {
-    // Implemente a lógica que você deseja quando um botão for clicado
-    console.log(`Botão ${tipoInvestimento} clicado!`);
-    // Aqui você pode navegar para a tela de cadastro específica usando o React Navigation
-    // navigation.navigate('TelaCadastro', { tipoInvestimento });
+export default function New() {
+  const navigation = useNavigation();
+
+  const abrirQuizCasa = () => {
+    console.log('Lógica específica para o botão Quiz');
+    navigation.navigate('QuizCasa');
   };
 
   return (
     <View style={styles.container}>
-      {/* Texto acima dos botões */}
-      <Text style={styles.text}>Selecione seu novo investimento</Text>
+      <Text style={styles.text}>Novos Projetos</Text>
+      <Text style={styles.subtext}>Selecione seu novo investimento</Text>
 
-      {/* Botões de investimento */}
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => handleInvestmentClick('Casa')}
-      >
-        <Text style={styles.buttonText}>Casa</Text>
+      <TouchableOpacity style={styles.button}  onPress={() => abrirQuizCasa()}>
+      <Text style={styles.buttonText}>Casa</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -36,6 +33,7 @@ export default function New({ navigation }) {
       >
         <Text style={styles.buttonText}>Carro/Moto</Text>
       </TouchableOpacity>
+
     </View>
   );
 }

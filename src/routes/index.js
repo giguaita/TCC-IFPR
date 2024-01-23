@@ -15,12 +15,15 @@ import Notification from '../pages/Notification';
 import Profile from '../pages/Profile';
 import Search from '../pages/Search';
 import ButtonNew from '../pages/components/ButtonNew';
+//Aqui faz a parte do Notification
 import CadastroCasa from '../pages/Notification/casa/index';
 import CadastroAlimentacao from '../pages/Notification/alimentacao/index';
 import CadastroTransporte from '../pages/Notification/transporte/index';
 import CadastrosaudeBeleza from '../pages/Notification/saudeBeleza/index';
 import CadastroEducacao from '../pages/Notification/educacao/index';
 import CadastroLazer from '../pages/Notification/lazer/index';
+//aqui faz a parte do NEW
+import QuizCasa from '../pages/New/NewCasa/index';
 
 
 
@@ -51,6 +54,9 @@ function MainStack() {
 
       <Stack.Screen name="CadastroLazer" component={CadastroLazer} options={{ headerShown: false }} />
 
+      {/* Aqui começa a parte do NEW */}
+      
+      <Stack.Screen name="QuizCasa" component={QuizCasa} options={{ headerShown: false }} />
       
 
     </Stack.Navigator>
