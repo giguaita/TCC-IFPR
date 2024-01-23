@@ -56,7 +56,7 @@ export default function Notification() {
        {showInfo && (
         <View style={styles.infoTextContainer}>
           <Text style={styles.infoText}>
-            Adcicione abaixo seus gastos mensais, lembrando que caso algo não faça parte de seus gastos apenas deixe R$0,00.
+            Adcicione abaixo seus gastos mensais, lembrando que caso algo não faça parte de seus gastos apenas deixe em branco.
           </Text>
         </View>
       )}
