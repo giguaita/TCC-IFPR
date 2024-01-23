@@ -27,6 +27,7 @@ import QuizCasa from '../pages/New/NewCasa/index';
 
 
 
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
