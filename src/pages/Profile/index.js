@@ -94,13 +94,15 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
     },
     imageContainer: {
-      marginTop: -5, // Ajuste fino da posição vertical da imagem de perfil
+      marginTop: -1, // Ajuste fino da posição vertical da imagem de perfil
     },
     profileImage: {
       width: 100,
       height: 100,
-      borderRadius: 75, // Borda circular para a imagem do perfil
-      marginTop: 10, // Espaçamento superior da imagem do perfil
+      borderRadius: 50, // Metade da largura/altura para torná-lo circular
+      marginTop: 10,
+      alignSelf: 'center', // Centraliza a imagem horizontalmente
+      marginBottom: 10, // Adiciona algum espaçamento abaixo da imagem se necessário
     },
     uploadText: {
       fontSize: 16,
