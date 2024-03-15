@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import MonthlyExpensesChart from './MonthlyExpensesChart';
+
 
 export default function Profile() {
   const [userImage, setUserImage] = useState(null);
@@ -57,6 +59,7 @@ export default function Profile() {
       </View>
 
       <View style={styles.expensesContainer}>
+        {/* Seção de salário */}
         <View style={styles.salaryInputContainer}>
           <Text style={styles.salaryInputLabel}>Salário do mês de {currentMonth}:</Text>
           <View style={styles.salaryInputBox}>
@@ -71,14 +74,19 @@ export default function Profile() {
           </View>
         </View>
 
+        {/* Seção de despesas */}
         <View style={styles.expensesBox}>
           <Text style={styles.expensesText}>- R$1234,56</Text>
           <Text style={styles.monthText}>{currentMonth}</Text>
         </View>
+
+        {/* Gráfico de despesas mensais */}
+        <MonthlyExpensesChart />
       </View>
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
     container: {
