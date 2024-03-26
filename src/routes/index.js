@@ -25,7 +25,7 @@ import CadastroLazer from '../pages/Notification/lazer/index';
 //aqui faz a parte do NEW
 import QuizCasa from '../pages/New/NewCasa/index';
 import QuizCar from '../pages/New/NewCar';
-
+import QuizViagem from '../pages/New/NewViagem';
 
 
 
@@ -60,6 +60,7 @@ function MainStack() {
       
       <Stack.Screen name="QuizCasa" component={QuizCasa} options={{ headerShown: false }} />
       <Stack.Screen name="QuizCar" component={QuizCar} options={{headerShown: false}}/>
+      <Stack.Screen name="QuizViagem" component={QuizViagem} options={{headerShown: false}}/>
 
 
       

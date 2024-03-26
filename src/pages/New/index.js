@@ -3,6 +3,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+
 export default function New() {
   const navigation = useNavigation();
 
@@ -16,6 +17,12 @@ export default function New() {
     navigation.navigate('QuizCar');
   };
 
+  const abrirQuizViagem = () => {
+    console.log('Lógica específica para o botão Quiz');
+    navigation.navigate('QuizViagem');
+  };
+
+
 
   return (
     <View style={styles.container}>
@@ -26,7 +33,7 @@ export default function New() {
       <Text style={styles.buttonText}>Casa</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => handleInvestmentClick('Viagem')}>
+      <TouchableOpacity style={styles.button} onPress={() => abrirQuizViagem()}>
         <Text style={styles.buttonText}>Viagem</Text>
       </TouchableOpacity>
 
