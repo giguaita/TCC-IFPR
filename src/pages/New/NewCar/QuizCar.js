@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity,ScrollView,Alert} from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity,ScrollView,Alert,TouchableWithoutFeedback, Keyboard} from 'react-native';
 import {useNavigation} from '@react-navigation/native'; 
 
 
@@ -10,19 +10,20 @@ export default function QuizCar() {
   const [documentos, setDocumentos] = useState('');
   const [manutencao, setManutencao] = useState('');
   const [taxa, setTaxa] = useState('');
+  const [financiamento, setFinanciamento] = useState('');
 
   
   const navigation = useNavigation();
 
   const calcularTotal = () => {
-    const valores = [valor,seguro,licenca,documentos,manutencao,taxa];
+    const valores = [valor,seguro,licenca,documentos,manutencao,taxa,financiamento];
     const total = valores.reduce((acc, valor) => acc + parseFloat(valor || 0), 0);
     return total.toFixed(2);
   };
   const exibirDicas = () => {
     Alert.alert(
       'Dicas',
-      'Suas dicas',
+      'Antes de começar a procurar um veículo, determine quanto você pode pagar. Considere não apenas o preço do carro ou moto, mas também os custos de seguro, manutenção, combustível e possíveis reparos.',
       [
         {
           text: 'OK',
@@ -34,6 +35,8 @@ export default function QuizCar() {
     );
   };
   return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}> 
+      <ScrollView contentContainerStyle={styles.scrollViewContainer}> 
         <View style={styles.container}>
 
           {/* Botão de dicas */}
@@ -86,6 +89,14 @@ export default function QuizCar() {
                 onChangeText={(text) => setTaxa(text)}
                 keyboardType="numeric"
               />
+               <TextInput
+                style={styles.input}
+                placeholder="Financiamento"
+                value={financiamento}
+                onChangeText={(text) => setFinanciamento(text)}
+                keyboardType="numeric"
+              />
+                   
                           
 
               {/* Exibir o total de gastos */}
@@ -102,8 +113,10 @@ export default function QuizCar() {
                 onPress={() => navigation.goBack()} // Usar navigation.goBack() para voltar
               >
                 <Text style={styles.textoBotao}>Voltar</Text>
-          </TouchableOpacity>
-      </View>
+                </TouchableOpacity>
+            </View>
+        </ScrollView>
+    </TouchableWithoutFeedback>
   );
 }
 
