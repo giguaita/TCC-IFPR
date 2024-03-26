@@ -24,6 +24,7 @@ import CadastroEducacao from '../pages/Notification/educacao/index';
 import CadastroLazer from '../pages/Notification/lazer/index';
 //aqui faz a parte do NEW
 import QuizCasa from '../pages/New/NewCasa/index';
+import QuizCar from '../pages/New/NewCar';
 
 
 
@@ -58,6 +59,9 @@ function MainStack() {
       {/* Aqui começa a parte do NEW */}
       
       <Stack.Screen name="QuizCasa" component={QuizCasa} options={{ headerShown: false }} />
+      <Stack.Screen name="QuizCar" component={QuizCar} options={{headerShown: false}}/>
+
+
       
 
     </Stack.Navigator>

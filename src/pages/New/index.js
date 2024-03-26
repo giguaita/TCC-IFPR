@@ -11,6 +11,12 @@ export default function New() {
     navigation.navigate('QuizCasa');
   };
 
+  const abrirQuizCar = () => {
+    console.log('Lógica específica para o botão Quiz');
+    navigation.navigate('QuizCar');
+  };
+
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Novos Projetos</Text>
@@ -20,17 +26,11 @@ export default function New() {
       <Text style={styles.buttonText}>Casa</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => handleInvestmentClick('Viagem')}
-      >
+      <TouchableOpacity style={styles.button} onPress={() => handleInvestmentClick('Viagem')}>
         <Text style={styles.buttonText}>Viagem</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => handleInvestmentClick('Carro/Moto')}
-      >
+      <TouchableOpacity style={styles.button} onPress={() => abrirQuizCar()}>
         <Text style={styles.buttonText}>Carro/Moto</Text>
       </TouchableOpacity>
 

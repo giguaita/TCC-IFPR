@@ -24,7 +24,7 @@ export default function QuizCasa() {
   const navigation = useNavigation();
 
   const calcularTotal = () => {
-    const valores = [areia];
+    const valores = [areia,pedra,cimento,ferro,argamassa,tijolo,madeira,telha,vidro,luz,piso,acabamento,pintura,mao,outro];
     const total = valores.reduce((acc, valor) => acc + parseFloat(valor || 0), 0);
     return total.toFixed(2);
   };
