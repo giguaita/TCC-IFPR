@@ -26,7 +26,7 @@ export default function QuizViagem() {
   const exibirDicas = () => {
     Alert.alert(
       'Dicas',
-      'dicas',
+      'Destino e Duração: Escolha para onde quer ir e por quanto tempo, considerando clima, atrações e custo de vida.- Orçamento: Estabeleça um limite realista para gastos em passagens, hospedagem, alimentação, transporte e atividades.-Passagens e Hospedagem: Reserve passagens com antecedência para obter melhores preços e encontre acomodações que se encaixem no seu orçamento e preferências.-Itinerário: Liste as atrações que deseja visitar, considerando localização, custo e tempo necessário.-Seguro de Viagem: Proteja-se com um seguro que cubra despesas médicas, cancelamentos e emergências.-Documentos: Certifique-se de ter todos os documentos necessários, como passaporte, visto e carteira de vacinação.-Bagagem: Faça uma lista dos itens essenciais e organize suas malas com antecedência.-Transporte Local: Pesquise opções de transporte no destino e planeje seu deslocamento do aeroporto para o hotel e entre as atrações.-Contingências: Tenha um plano para lidar com imprevistos, como atrasos ou emergências médicas, e mantenha contato com pessoas em casa.',
       [
         {
           text: 'OK',
