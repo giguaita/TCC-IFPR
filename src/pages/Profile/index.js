@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, TextInput, StyleSheet, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { useNavigation } from '@react-navigation/native'; // Importe o hook useNavigation
 import MonthlyExpensesChart from './MonthlyExpensesChart';
-
 
 export default function Profile() {
   const [userImage, setUserImage] = useState(null);
   const [salary, setSalary] = useState('');
   const [currentMonth, setCurrentMonth] = useState('');
+  const navigation = useNavigation(); // Obtenha o objeto de navegação
 
   useEffect(() => {
     // Solicitar permissão ao usuário para acessar a galeria de fotos
@@ -44,122 +45,174 @@ export default function Profile() {
     }
   };
 
+  const exibirDicas = () => {
+    Alert.alert(
+      'Dicas',
+      'Aqui voce terá acesso a um balanceamento anual dos seus gastos',
+      [
+        {
+          text: 'OK',
+          onPress: () => console.log('Botão OK Pressionado'),
+          style: 'cancel',
+        },
+      ],
+      { cancelable: false }
+    );
+  };
+
+  const handleSair = () => {
+    // Navegue para a tela de login
+    navigation.navigate('Welcome');
+  };
+
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.text}>Perfil do Usuário</Text>
-
-        <TouchableOpacity onPress={handleChooseImage} style={styles.imageContainer}>
-          {userImage ? (
-            <Image source={{ uri: userImage.uri }} style={styles.profileImage} />
-          ) : (
-            <Text style={styles.uploadText}>Clique para fazer o upload de uma imagem</Text>
-          )}
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.dicasButton} onPress={exibirDicas}>
+          <Text style={styles.dicasButtonText}>Atenção</Text>
         </TouchableOpacity>
-      </View>
 
-      <View style={styles.expensesContainer}>
-        {/* Seção de salário */}
-        <View style={styles.salaryInputContainer}>
-          <Text style={styles.salaryInputLabel}>Salário do mês de {currentMonth}:</Text>
-          <View style={styles.salaryInputBox}>
-            <Text style={styles.currencySymbol}>R$</Text>
-            <TextInput
-              style={styles.salaryInput}
-              placeholder="Digite seu salário"
-              keyboardType="numeric"
-              value={salary}
-              onChangeText={(text) => setSalary(text)}
-            />
+        <TouchableOpacity style={styles.sairButton} onPress={handleSair}>
+          <Text style={styles.sairButtonText}>Sair do APP</Text>
+        </TouchableOpacity>
+
+        <View style={styles.header}>
+          <Text style={styles.text}>Perfil do Usuário</Text>
+
+          <TouchableOpacity onPress={handleChooseImage} style={styles.imageContainer}>
+            {userImage ? (
+              <Image source={{ uri: userImage.uri }} style={styles.profileImage} />
+            ) : (
+              <Text style={styles.uploadText}>Clique para fazer o upload de uma imagem</Text>
+            )}
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.expensesContainer}>
+          {/* Seção de salário */}
+          <View style={styles.salaryInputContainer}>
+            <Text style={styles.salaryInputLabel}>Salário do mês de {currentMonth}:</Text>
+            <View style={styles.salaryInputBox}>
+              <Text style={styles.currencySymbol}>R$</Text>
+              <TextInput
+                style={styles.salaryInput}
+                placeholder="Digite seu salário"
+                keyboardType="numeric"
+                value={salary}
+                onChangeText={(text) => setSalary(text)}
+              />
+            </View>
           </View>
-        </View>
 
-        {/* Seção de despesas */}
-        <View style={styles.expensesBox}>
-          <Text style={styles.expensesText}>- R$1234,56</Text>
-          <Text style={styles.monthText}>{currentMonth}</Text>
-        </View>
+          {/* Seção de despesas */}
+          <View style={styles.expensesBox}>
+            <Text style={styles.expensesText}>- R$1234,56</Text>
+            <Text style={styles.monthText}>{currentMonth}</Text>
+          </View>
 
-        {/* Gráfico de despesas mensais */}
-        <MonthlyExpensesChart />
+          {/* Gráfico de despesas mensais */}
+          <MonthlyExpensesChart />
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
-
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'flex-start', // Alinha os itens no início do contêiner
-      alignItems: 'center', // Alinha os itens no centro do contêiner
-    },
-    header: {
-      marginTop: 50, // Espaçamento superior do cabeçalho
-    },
-    text: {
-      fontSize: 20,
-      fontWeight: 'bold',
-    },
-    imageContainer: {
-      marginTop: -1, // Ajuste fino da posição vertical da imagem de perfil
-    },
-    profileImage: {
-      width: 100,
-      height: 100,
-      borderRadius: 50, // Metade da largura/altura para torná-lo circular
-      marginTop: 10,
-      alignSelf: 'center', // Centraliza a imagem horizontalmente
-      marginBottom: 10, // Adiciona algum espaçamento abaixo da imagem se necessário
-    },
-    uploadText: {
-      fontSize: 16,
-      color: 'blue',
-      marginTop: 10, // Espaçamento superior do texto de upload
-    },
-    expensesContainer: {
-      backgroundColor: 'green', // Cor de fundo do contêiner de despesas
-      padding: 20, // Preenchimento interno do contêiner de despesas
-      marginTop: 40, // Espaçamento superior do contêiner de despesas
-      borderRadius: 10, // Borda arredondada do contêiner de despesas
-      width: '90%', // Largura do contêiner de despesas
-    },
-    salaryInputContainer: {
-      marginBottom: 50, // Espaçamento inferior do contêiner de entrada de salário
-    },
-    salaryInputLabel: {
-      color: 'white',
-      fontSize: 18,
-    },
-    salaryInputBox: {
-      flexDirection: 'row', // Disposição em linha para rótulo e entrada
-      alignItems: 'center', // Alinha os itens no centro horizontalmente
-      marginTop: 5,
-    },
-    currencySymbol: {
-      color: 'white',
-      fontSize: 18,
-      marginRight: 5, // Espaçamento à direita do símbolo de moeda
-    },
-    salaryInput: {
-      backgroundColor: 'white',
-      borderRadius: 5,
-      padding: 5,
-      flex: 1, // Preenche o restante do espaço disponível
-      fontSize: 18,
-    },
-    expensesBox: {
-      flexDirection: 'row',
-      justifyContent: 'space-between', // Distribui os itens uniformemente ao longo do eixo principal
-      alignItems: 'center',
-    },
-    expensesText: {
-      color: 'white',
-      fontSize: 18,
-    },
-    monthText: {
-      color: 'white',
-      fontSize: 16,
-    },
-  });
-  
+  container: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  dicasButton: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    backgroundColor: 'orange',
+    padding: 10,
+    borderRadius: 5,
+  },
+  dicasButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  sairButton: {
+    position: 'absolute',
+    top: 60,
+    right: 20,
+    backgroundColor: 'red',
+    padding: 10,
+    borderRadius: 5,
+  },
+  sairButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  header: {
+    marginTop: 100,
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  imageContainer: {
+    marginTop: -1,
+  },
+  profileImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginTop: 10,
+    alignSelf: 'center',
+    marginBottom: 10,
+  },
+  uploadText: {
+    fontSize: 16,
+    color: 'blue',
+    marginTop: 10,
+  },
+  expensesContainer: {
+    backgroundColor: 'green',
+    padding: 20,
+    marginTop: 40,
+    borderRadius: 10,
+    width: '90%',
+  },
+  salaryInputContainer: {
+    marginBottom: 50,
+  },
+  salaryInputLabel: {
+    color: 'white',
+    fontSize: 18,
+  },
+  salaryInputBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 5,
+  },
+  currencySymbol: {
+    color: 'white',
+    fontSize: 18,
+    marginRight: 5,
+  },
+  salaryInput: {
+    backgroundColor: 'white',
+    borderRadius: 5,
+    padding: 5,
+    flex: 1,
+    fontSize: 18,
+  },
+  expensesBox: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  expensesText: {
+    color: 'white',
+    fontSize: 18,
+  },
+  monthText: {
+    color: 'white',
+    fontSize: 16,
+  },
+});
