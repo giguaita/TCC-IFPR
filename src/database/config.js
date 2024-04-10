@@ -1,4 +1,4 @@
-import * as SQLite from 'expo-sqlite';
+/*import * as SQLite from 'expo-sqlite';
 import Cadastro from './entities/cadastro';
 
 
@@ -10,4 +10,4 @@ const config = {
     type: " expo",
 };
 
-export default config;
+export default config;*/

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity,TouchableWithoutFeedback, Keyboard } from 'react-native';
 import {useNavigation} from '@react-navigation/native'; 
 
 
@@ -18,7 +18,7 @@ export default function CadastroAlimentacao() {
   };
 
   return (
-
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}> 
     <View style={styles.container}>
       <Text style={styles.titulo}>Cadastro de Gastos - Alimentação</Text>
 
@@ -61,6 +61,7 @@ export default function CadastroAlimentacao() {
         <Text style={styles.textoBotao}>Voltar</Text>
       </TouchableOpacity>
     </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -108,5 +109,3 @@ const styles = StyleSheet.create({
   },
   
 });
-
-

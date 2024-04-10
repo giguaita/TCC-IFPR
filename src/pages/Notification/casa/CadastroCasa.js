@@ -1,6 +1,6 @@
 // CadastroCasa.js
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity,TouchableWithoutFeedback, Keyboard  } from 'react-native';
 import {useNavigation} from '@react-navigation/native'; 
 //import KeyboardAvoidingComponent from '../../components/keyboard';
 
@@ -24,7 +24,7 @@ export default function CadastroCasa() {
   };
 
   return (
-   
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}> 
     <View style={styles.container}>
       
       <Text style={styles.titulo}>Cadastro de Gastos - Casa</Text>
@@ -110,6 +110,7 @@ export default function CadastroCasa() {
         <Text style={styles.textoBotao}>Voltar</Text>
       </TouchableOpacity>
     </View>
+    </TouchableWithoutFeedback>
   );
 }
 

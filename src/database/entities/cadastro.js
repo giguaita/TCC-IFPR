@@ -1,4 +1,4 @@
-import {EntitySchema} from "typeora";
+/*import {EntitySchema} from "typeora";
 
 const Cadastro = new EntitySchema ({
     name: "Cadastro", //nome da entidade
@@ -19,4 +19,4 @@ const Cadastro = new EntitySchema ({
 },
 });
 
-export default Cadastro;
+export default Cadastro;*/
