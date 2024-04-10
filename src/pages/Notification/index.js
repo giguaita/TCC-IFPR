@@ -1,105 +1,89 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function Notification() {
-  // Estado para armazenar o total de gastos
   const [totalGastos, setTotalGastos] = useState(0);
   const [showInfo, setShowInfo] = useState(false);
   const navigation = useNavigation();
 
-  // Função chamada quando o ícone de interrogação é clicado
-  const handleInfoClick = () => {
-    console.log('Ícone de interrogação clicado!');
-    setShowInfo(!showInfo); // Alterna o estado de exibição do texto de informação
-  };
-
-  // Funções para lidar com o clique em diferentes botões
   const abrirCadastroCasa = () => {
-    console.log('Lógica específica para o botão Casa');
     navigation.navigate('CadastroCasa');
   };
 
   const abrirCadastroAlimentacao = () => {
-    console.log('Lógica específica para o botão Alimentação');
     navigation.navigate('CadastroAlimentacao');
   };
 
   const abrirCadastroTransporte = () => {
-    console.log('Lógica específica para o botão Transporte');
     navigation.navigate('CadastroTransporte');
   };
 
   const abrirCadastrosaudeBeleza = () => {
-    console.log('Lógica específica para o botão SaudeBeleza');
     navigation.navigate('CadastrosaudeBeleza');
   };
 
   const abrirCadastroEducacao = () => {
-    console.log('Lógica específica para o botão Educação');
     navigation.navigate('CadastroEducacao');
   };
 
   const abrirCadastroLazer = () => {
-    console.log('Lógica específica para o botão Lazer');
     navigation.navigate('CadastroLazer');
+  };
+
+  const exibirDicas = () => {
+    Alert.alert(
+      'Dicas',
+      'Adcicione abaixo seus gastos mensais, lembrando que caso algo não faça parte de seus gastos apenas deixe em branco.',
+      [
+        {
+          text: 'OK',
+          onPress: () => console.log('Botão OK Pressionado'),
+          style: 'cancel',
+        },
+      ],
+      { cancelable: false }
+    );
   };
 
   return (
     <View style={styles.container}>
-      {/* Ícone de interrogação no canto superior esquerdo */}
-      <TouchableOpacity style={styles.infoButton} onPress={handleInfoClick}>
-         <Text style={styles.infoButtonText}>?</Text>
-      </TouchableOpacity>
-
-       {/* Exibe o texto de informação quando showInfo for verdadeiro */}
-       {showInfo && (
-        <View style={styles.infoTextContainer}>
-          <Text style={styles.infoText}>
-            Adcicione abaixo seus gastos mensais, lembrando que caso algo não faça parte de seus gastos apenas deixe em branco.
-          </Text>
-        </View>
-      )}
-
-      {/* Símbolo de dinheiro */}
       <Text style={styles.moneySymbol}>$</Text>
-
-      {/* Título "Controle de Gastos" */}
       <Text style={styles.text}>Controle de Gastos</Text>
 
-      {/* Botões para os tipos de gastos */}
-      <TouchableOpacity style={styles.button} onPress={() => abrirCadastroCasa()}>
+      <TouchableOpacity style={styles.button} onPress={abrirCadastroCasa}>
         <Text style={styles.buttonText}>Casa</Text>
       </TouchableOpacity>
 
-      {/* Botões para os outros tipos de gastos */}
-      <TouchableOpacity style={styles.button} onPress={() => abrirCadastroAlimentacao()}>
+      <TouchableOpacity style={styles.button} onPress={abrirCadastroAlimentacao}>
         <Text style={styles.buttonText}>Alimentação</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => abrirCadastroTransporte()}>
+      <TouchableOpacity style={styles.button} onPress={abrirCadastroTransporte}>
         <Text style={styles.buttonText}>Transporte</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => abrirCadastrosaudeBeleza()}>
+      <TouchableOpacity style={styles.button} onPress={abrirCadastrosaudeBeleza}>
         <Text style={styles.buttonText}>Saúde & Beleza</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => abrirCadastroEducacao()}>
+      <TouchableOpacity style={styles.button} onPress={abrirCadastroEducacao}>
         <Text style={styles.buttonText}>Educação</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => abrirCadastroLazer()}>
+      <TouchableOpacity style={styles.button} onPress={abrirCadastroLazer}>
         <Text style={styles.buttonText}>Lazer & Extras</Text>
       </TouchableOpacity>
 
-      {/* Exibe o total de gastos na interface */}
+      <TouchableOpacity style={styles.dicasButton} onPress={exibirDicas}>
+        <Text style={styles.dicasButtonText}>Dicas</Text>
+      </TouchableOpacity>
+
       <Text style={styles.contador}>Total de Gastos: R$ {totalGastos.toFixed(2)}</Text>
     </View>
   );
 }
 
-// Estilos CSS
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -108,21 +92,21 @@ const styles = StyleSheet.create({
   },
   moneySymbol: {
     fontSize: 30,
-    marginBottom: 5,
+    marginBottom: 10,
   },
   text: {
     fontSize: 30,
     fontWeight: 'bold',
-    marginBottom: 100,
+    marginBottom: 40, // Reduzindo o espaço abaixo do título
   },
   button: {
     backgroundColor: '#03BB85',
     padding: 10,
-    marginVertical: 10,
+    marginVertical: 10, // Reduzindo o espaçamento vertical
     borderRadius: 5,
     width: 200,
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 10, // Reduzindo o espaço abaixo dos botões
   },
   buttonText: {
     color: 'white',
@@ -134,16 +118,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 20,
   },
-  infoButton: {
+  dicasButton: {
+    backgroundColor: '#FFA500', // Laranja
+    padding: 10,
+    borderRadius: 5,
     position: 'absolute',
-    top: 10,
+    top: 30,
     right: 10,
-    backgroundColor: 'transparent',
-    zIndex: 1,
-    padding: 15, // Ajuste o tamanho conforme necessário
   },
-  infoButtonText: {
-    color: 'black',
-    fontSize: 24, // Ajuste o tamanho conforme necessário
+  dicasButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
