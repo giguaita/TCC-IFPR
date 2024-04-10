@@ -1,8 +1,7 @@
-// CadastroCasa.js
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity,TouchableWithoutFeedback, Keyboard  } from 'react-native';
 import {useNavigation} from '@react-navigation/native'; 
-//import KeyboardAvoidingComponent from '../../components/keyboard';
+
 
 export default function CadastroLazer() {
   const [viagem, setViagem] = useState('');
