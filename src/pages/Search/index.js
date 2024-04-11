@@ -54,6 +54,11 @@ export default function Search() {
     );
   };
 
+  const handleViewProject = (index) => {
+    console.log(`Visualizando projeto ${index + 1}`);
+    // Aqui você pode adicionar a lógica para visualizar o projeto
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -84,6 +89,9 @@ export default function Search() {
                         </TouchableOpacity>
                       </>
                     )}
+                    <TouchableOpacity onPress={() => handleViewProject(index)}>
+                      <Text style={styles.viewProject}>Visualizar</Text>
+                    </TouchableOpacity>
                   </View>
                 </View>
               </TouchableOpacity>
@@ -112,6 +120,9 @@ export default function Search() {
                         </TouchableOpacity>
                       </>
                     )}
+                    <TouchableOpacity onPress={() => handleViewProject(index)}>
+                      <Text style={styles.viewProject}>Visualizar</Text>
+                    </TouchableOpacity>
                   </View>
                 </View>
               </TouchableOpacity>
@@ -195,5 +206,10 @@ const styles = StyleSheet.create({
   },
   editIcon: {
     marginLeft: 5, // Adicionando margem à esquerda para separar o ícone do nome
+  },
+  viewProject: {
+    fontSize: 16,
+    color: 'blue',
+    textDecorationLine: 'underline',
   },
 });
