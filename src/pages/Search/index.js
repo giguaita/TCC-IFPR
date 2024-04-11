@@ -89,10 +89,10 @@ export default function Search() {
                         </TouchableOpacity>
                       </>
                     )}
-                    <TouchableOpacity onPress={() => handleViewProject(index)}>
-                      <Text style={styles.viewProject}>Visualizar</Text>
-                    </TouchableOpacity>
                   </View>
+                  <TouchableOpacity onPress={() => handleViewProject(index)}>
+                    <Text style={styles.viewProject}>Visualizar</Text>
+                  </TouchableOpacity>
                 </View>
               </TouchableOpacity>
             ))}
@@ -120,10 +120,10 @@ export default function Search() {
                         </TouchableOpacity>
                       </>
                     )}
-                    <TouchableOpacity onPress={() => handleViewProject(index)}>
-                      <Text style={styles.viewProject}>Visualizar</Text>
-                    </TouchableOpacity>
                   </View>
+                  <TouchableOpacity onPress={() => handleViewProject(index)}>
+                    <Text style={styles.viewProject}>Visualizar</Text>
+                  </TouchableOpacity>
                 </View>
               </TouchableOpacity>
             ))}
