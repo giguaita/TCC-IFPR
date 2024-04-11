@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, TextInput, StyleSheet, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
+import { View, Text, Image, TouchableOpacity, TextInput, StyleSheet, TouchableWithoutFeedback, Keyboard, Alert, Modal, Dimensions } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons'; // Importe o FontAwesome
 import * as ImagePicker from 'expo-image-picker';
 import { useNavigation } from '@react-navigation/native'; // Importe o hook useNavigation
 import MonthlyExpensesChart from './MonthlyExpensesChart';
@@ -8,6 +9,7 @@ export default function Profile() {
   const [userImage, setUserImage] = useState(null);
   const [salary, setSalary] = useState('');
   const [currentMonth, setCurrentMonth] = useState('');
+  const [showSettingsModal, setShowSettingsModal] = useState(false); // Estado para controlar a exibição do modal de configurações
   const navigation = useNavigation(); // Obtenha o objeto de navegação
 
   useEffect(() => {
@@ -72,9 +74,26 @@ export default function Profile() {
           <Text style={styles.dicasButtonText}>Atenção</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.sairButton} onPress={handleSair}>
-          <Text style={styles.sairButtonText}>Sair do APP</Text>
+        <TouchableOpacity style={styles.settingsButton} onPress={() => setShowSettingsModal(true)}>
+          <FontAwesome name="cog" size={24} color="black" />
         </TouchableOpacity>
+
+        <Modal
+          visible={showSettingsModal}
+          transparent={true}
+          animationType="fade"
+          onRequestClose={() => setShowSettingsModal(false)}
+        >
+          <TouchableWithoutFeedback onPress={() => setShowSettingsModal(false)}>
+            <View style={styles.modalOverlay}>
+              <View style={styles.modalContainer}>
+                <TouchableOpacity style={styles.logoutButton} onPress={handleSair}>
+                  <Text style={styles.logoutButtonText}>Sair do APP</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+        </Modal>
 
         <View style={styles.header}>
           <Text style={styles.text}>Perfil do Usuário</Text>
@@ -89,22 +108,8 @@ export default function Profile() {
         </View>
 
         <View style={styles.expensesContainer}>
-          {/* Seção de salário */}
-          <View style={styles.salaryInputContainer}>
-            <Text style={styles.salaryInputLabel}>Salário do mês de {currentMonth}:</Text>
-            <View style={styles.salaryInputBox}>
-              <Text style={styles.currencySymbol}>R$</Text>
-              <TextInput
-                style={styles.salaryInput}
-                placeholder="Digite seu salário"
-                keyboardType="numeric"
-                value={salary}
-                onChangeText={(text) => setSalary(text)}
-              />
-            </View>
-          </View>
 
-          {/* Seção de despesas */}
+          {/* Seção de despesas - DEVERÁ SER MODIFICADA PARA APARECER O TOTAL DE GASTOS LA DE NEW */}
           <View style={styles.expensesBox}>
             <Text style={styles.expensesText}>- R$1234,56</Text>
             <Text style={styles.monthText}>{currentMonth}</Text>
@@ -117,6 +122,8 @@ export default function Profile() {
     </TouchableWithoutFeedback>
   );
 }
+
+const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
@@ -136,15 +143,32 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
-  sairButton: {
+  settingsButton: {
     position: 'absolute',
-    top: 60,
-    right: 20,
+    top: 20,
+    left: 20,
+    zIndex: 1, // Para garantir que o ícone da engrenagem fique sobreposto aos outros elementos
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContainer: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    width: '80%',
+    maxHeight: windowHeight * 0.8,
+  },
+  logoutButton: {
     backgroundColor: 'red',
     padding: 10,
     borderRadius: 5,
+    alignSelf: 'center',
   },
-  sairButtonText: {
+  logoutButtonText: {
     color: 'white',
     fontWeight: 'bold',
   },
